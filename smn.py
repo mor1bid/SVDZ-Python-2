@@ -46,9 +46,10 @@ print("Восьмеричный вид\nРезультат А:", octau)
 print("Результат Б:", octre)
 
 # 4
+print("\n4.")
 compute = True
 while (compute):
-    d = float(input("\n4. Введите желаемое значение диаметра (до 1000)\n: "))
+    d = float(input("Введите желаемое значение диаметра (до 1000)\n: "))
     if d < 1000:
         r = d / 2
         s = math.pi * math.sqrt(r)
@@ -59,3 +60,34 @@ while (compute):
 
 # 5
 
+# 6
+print("\n6.")
+perc1 = 1.5
+perc2 = 3
+sum = 0
+compute = True
+round = 0
+while (compute):
+    move = input("Выберите желаемое действие:\n(1) Пополнить баланс\n(2) Снять сумму\n(3) Показать счёт\n(q) Выйти\n: ")
+    if move == "1":
+        money = int(input("Введите желаемую сумму\n: "))
+        if money % 50 == 0:
+            sum += money
+            print("Вы пополнили ваш счёт на\n:", money, "кредитов.\nВаш счёт теперь составляет\n:", sum, "кредитов.")
+            round += 1
+            if round % 3 == 0:
+                sum += sum * perc2 / 100
+    elif move == "2":
+        money = int(input("Введите желаемую сумму\n: "))
+        if money % 50 == 0 and money <= sum:
+            procent = money * perc1 / 100
+            sum -= money + procent
+            print("Вы сняли со счёта сумму в размере\n:", money, "кредитов.\nВаш счёт теперь составляет\n:", sum, "кредитов.\nС учётом ставки в 1.5% процентов, с вашего счёта также было снято\n:", procent, "кредитов.")
+            round += 1
+            if round % 3 == 0:
+                sum += sum * perc2 / 100
+    elif move == "3":
+        print("Ваш счёт составляет\n:", sum, "кредитов.")
+    elif move == "q":
+        print("\nДо свидания.")
+        compute = False
