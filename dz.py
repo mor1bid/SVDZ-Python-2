@@ -5,30 +5,46 @@ from fractions import Fraction
 # Функцию hex используйте для проверки своего результата.
 
 number = int(input("2. Здравствуйте, введите число\n: "))
-code = [int(i) for i in str(number)]
-hec = [int(i) for i in str(number)]
 print("Результат А\n:", hex(number))
 hexn = '0x'
-for d in range(len(code)):
-    if d != 0:
-        if code[d] == 0 and code[d-1] > 0:
-            hec[d] = "a"
-        elif code[d] == 1 and code[d-1] > 0:
-            hec[d] = "b"
-        elif code[d] == 2 and code[d-1] > 0:
-            hec[d] = "c"
-        elif code[d] == 3 and code[d-1] > 0:
-            hec[d] = "d"
-        elif code[d] == 4 and code[d-1] > 0:
-            hec[d] = "e"
-        elif code[d] == 5 and code[d-1] > 0:
-            hec[d] = "f"
-        elif code[d] > 5 and code[d-1] > 0:
-            hec[d] -= 6
-        hexn += str(hec[d])
-    elif len(code) == 1:
-        hexn += str(hec[d])
-print("Результат Б\n:", hexn)
+hexre = ''
+while number > 0:
+    hexre = str(number % 16) + hexre
+    match hexre:
+        case '10':
+            hexre = 'a'
+        case '11':
+            hexre = 'b'
+        case '12':
+            hexre = 'c'
+        case '13':
+            hexre = 'd'
+        case '14':
+            hexre = 'e'
+        case '15':
+            hexre = 'd'
+    number //= 16
+# code = [int(i) for i in str(hexre)]
+# hec = [int(i) for i in str(hexre)]
+# for d in range(len(code)):
+#     if d != 0:
+#         if code[d] == 0 and code[d-1] > 0:
+#             hec[d] = "a"
+#         elif code[d] == 1 and code[d-1] > 0:
+#             hec[d] = "b"
+#         elif code[d] == 2 and code[d-1] > 0:
+#             hec[d] = "c"
+#         elif code[d] == 3 and code[d-1] > 0:
+#             hec[d] = "d"
+#         elif code[d] == 4 and code[d-1] > 0:
+#             hec[d] = "e"
+#         elif code[d] == 5 and code[d-1] > 0:
+#             hec[d] = "f"
+#         hexn += str(hec[d])
+#     elif len(code) == 1:
+#         hexn += str(hec[d])
+print(f"Результат Б\n: 0x{hexre}")
+# print("Результат Б\n:", hexn)
 
 # 3. Напишите программу, которая принимает две строки вида 
 # "a/b" - дробь с числителем и знаменателем. 

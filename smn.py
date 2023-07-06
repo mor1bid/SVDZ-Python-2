@@ -43,9 +43,9 @@ while numb > 0:
     numb //= 8
 
 print("Двоичный вид\nРезультат А:", binau)
-print("Результат Б:", binre)
+print(f"Результат Б:, 0x{binre}")
 print("Восьмеричный вид\nРезультат А:", octau)
-print("Результат Б:", octre)
+print(f"Результат Б:, 0x{octre}")
 
 # 4
 print("\n4.")
