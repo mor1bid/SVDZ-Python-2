@@ -66,17 +66,17 @@ a = random.randint(-10, 11)
 b = random.randint(-20, 21)
 c = random.randint(-20, 41)
 x2 = ''
-print("Квадратное уравнение\n:", {a:'x'}, '+', {b:'x'}, '+', c, '=', 0)
+print(f"Квадратное уравнение\n: {a}x + {b}x + {c} = {0}")
 disc = b ** 2 - 4 * a * c
 print("Дискриминант\n:", "D =", b ** 2, "-", 4, "*", a, "*", c, "\n=", disc)
 if disc > 0:
-    x1 = Fraction(-b + disc ** 0.5, 2 * a)
-    x2 = Fraction(-b - disc ** 0.5, 2 * a)
+    x1 = round((-b + disc ** 0.5) / 2 * a, 2)
+    x2 = round((-b - disc ** 0.5) / 2 * a, 2)
 elif disc == 0:
-    x1 = Fraction(-b, 2 * a)
+    x1 = round(-b / 2 * a, 2)
 else:
-    x1 = 'Корней нет.'
-print("Корни\n:", x1, x2)
+    x1 = 'Корней нет'
+print(f"Корни\n: {x1}; {x2}")
 
 # 6
 print("\n6.")
@@ -90,24 +90,34 @@ while (compute):
     if sum > 5000000:
         perc3 = 10 / 100
         print("Учитывается налог на богатство в 10%.")
+    else:
+        perc3 = 0
     move = input("Выберите желаемое действие:\n(1) Пополнить баланс\n(2) Снять сумму\n(3) Показать счёт\n(q) Выйти\n: ")
     if move == "1":
         money = int(input("Введите желаемую сумму\n: "))
         if money % 50 == 0:
-            sum += (money - perc3)
+            sum -= perc3
+            sum += abs(money)
             print("Вы пополнили ваш счёт на\n:", money, "кредитов.\nВаш счёт теперь составляет\n:", sum, "кредитов.")
             round += 1
             if round % 3 == 0:
                 sum += sum * perc2
+        else:
+            sum -= perc3
+            print("Операция не была проведена. Сумма должна быть кратна 50.\nВаш счёт составляет\n:", sum, "кредитов.")
     elif move == "2":
         money = int(input("Введите желаемую сумму\n: "))
         if money % 50 == 0 and money <= sum:
-            procent = money * perc1
-            sum -= (money - perc3) + procent
+            sum -= perc3
+            procent = abs(money) * perc1
+            sum -= abs(money) + procent
             print("Вы сняли со счёта сумму в размере\n:", money, "кредитов.\nВаш счёт теперь составляет\n:", sum, "кредитов.\nС учётом ставки в 1.5% процентов, с вашего счёта также было снято\n:", procent, "кредитов.")
             round += 1
             if round % 3 == 0:
                 sum += sum * perc2
+        else:
+            sum -= perc3
+            print("Операция не была проведена. Сумма должна быть кратна 50.\nВаш счёт составляет\n:", sum, "кредитов.")
     elif move == "3":
         print("Ваш счёт составляет\n:", sum, "кредитов.")
     elif move == "q":
